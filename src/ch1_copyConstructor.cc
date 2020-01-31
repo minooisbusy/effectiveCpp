@@ -30,6 +30,6 @@ int main()
 // Fortunately, copy construction is easy to distinguish from copy assignment. If a new object is being defined (such as w3 in the statement above), a constructor has to be called; it can't be an assginment
 }
 
-Widget::Widget(){};
-
-Widget::Widget(const Widget& rhs){ cout<<"
+Widget::Widget(){cout<<" Call Default Constructor"<<endl;}
+Widget::Widget(const Widget& rhs){ cout<<" Call Copy Constructor" <<endl;}
+Widget& Widget::operator=(const Widget& rhs){ cout<<" Call Copy Assignment Operator" <<endl;}
