@@ -14,8 +14,9 @@ public:
     Widget();                                   // Default constuctor
     Widget(const Widget& rhs);                  //copy constructor
     Widget& operator=(const Widget& rhs);       // copy assginment operator
-
 };
+
+bool hasAcceptableQuality(Widget w);
 
 int main()
 {
@@ -27,9 +28,23 @@ int main()
 
     Widget w3 = w2;                             // invoke copy constructor!
 
-// Fortunately, copy construction is easy to distinguish from copy assignment. If a new object is being defined (such as w3 in the statement above), a constructor has to be called; it can't be an assginment
+// Fortunately, copy construction is easy to distinguish from copy assignment. If a new object is being defined (such as w3 in the statement above), a constructor has to be called; it can't be an assginment If no new object is being deifned (such as in the "w1 = w2" statement above), no constructor can be invoked, so it's assignment.)
+
+// The copy constructor is a particularly important function, because it defines how an object is passed by value. For exmaple, consider this: ( go to line :19)
+    cout<<"*** aWidget defined! ***"<<endl;
+    Widget aWidget;
+    
+    if(hasAcceptableQuality(aWidget))
+        cout<<"acceptable! "<<endl;
+//The parameter w is passed to hasAcceptableQuality by value, so in the call above, aWidget is copied into w. The copying is done by Widget's copy constructor. Pass-by-value means "call the copy constructor." (However, it's generally a bad idea to pa2ss used-defined types by value. Pass-by-reference-to-const is typlically a better choise For details, see Item 20.)
+
 }
 
 Widget::Widget(){cout<<" Call Default Constructor"<<endl;}
 Widget::Widget(const Widget& rhs){ cout<<" Call Copy Constructor" <<endl;}
-Widget& Widget::operator=(const Widget& rhs){ cout<<" Call Copy Assignment Operator" <<endl;}
+Widget& Widget::operator=(const Widget& rhs){ cout<<" Call Copy Assignment Operator" <<endl; }
+bool hasAcceptableQuality(Widget w)
+{
+    return true;
+}
+
